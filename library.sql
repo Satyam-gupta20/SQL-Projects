@@ -2,6 +2,8 @@ DROP SCHEMA IF EXISTS library_management;
 CREATE SCHEMA IF NOT EXISTS library_management;
 
 DROP TABLE IF EXISTS library_management.user_login;
+ 
+--user_login table fields
 CREATE TABLE IF NOT EXISTS library_management.user_login (
 	user_id TEXT PRIMARY KEY,
     user_password TEXT,
@@ -10,7 +12,7 @@ CREATE TABLE IF NOT EXISTS library_management.user_login (
 	sign_up_on DATE,
 	email_id TEXT
 );
-
+--publisher details
 DROP TABLE IF EXISTS library_management.publisher;
 CREATE TABLE IF NOT EXISTS library_management.publisher (
 	publisher_id TEXT PRIMARY KEY,
@@ -19,7 +21,7 @@ CREATE TABLE IF NOT EXISTS library_management.publisher (
 	releases_count INT,
 	last_release DATE
 );
-
+--author details
 DROP TABLE IF EXISTS library_management.author;
 CREATE TABLE IF NOT EXISTS library_management.author (
 	author_id TEXT PRIMARY KEY,
@@ -27,7 +29,9 @@ CREATE TABLE IF NOT EXISTS library_management.author (
 	last_name TEXT,
 	publications_count INT
 );
-
+--books details 
+--author_id foreign key to author_id in author
+--publisher_id foriegn key to piblisher_id in publisher
 DROP TABLE IF EXISTS library_management.books;
 CREATE TABLE IF NOT EXISTS library_management.books (
 	book_id TEXT PRIMARY KEY,
@@ -40,7 +44,7 @@ CREATE TABLE IF NOT EXISTS library_management.books (
     available_from DATE,
     is_available BOOLEAN
 );
-
+--staff table
 DROP TABLE IF EXISTS library_management.staff;
 CREATE TABLE IF NOT EXISTS library_management.staff (
 	staff_id TEXT PRIMARY KEY,
@@ -54,6 +58,7 @@ CREATE TABLE IF NOT EXISTS library_management.staff (
 	work_shift_end TIME
 );
 
+--readers table
 DROP TABLE IF EXISTS library_management.readers;
 CREATE TABLE IF NOT EXISTS library_management.readers (
 	reader_id TEXT PRIMARY KEY,
@@ -68,6 +73,7 @@ CREATE TABLE IF NOT EXISTS library_management.readers (
 	current_fine FLOAT
 );
 
+--books_issues table
 DROP TABLE IF EXISTS library_management.books_issue;
 CREATE TABLE IF NOT EXISTS library_management.books_issue (
 	issue_id SERIAL PRIMARY KEY,
@@ -80,6 +86,7 @@ CREATE TABLE IF NOT EXISTS library_management.books_issue (
 	payment_transaction_id TEXT
 );
 
+--library general settings
 DROP TABLE IF EXISTS library_management.settings;
 CREATE TABLE IF NOT EXISTS library_management.settings (
 	book_issue_count_per_reader INT,
